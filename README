@@ -1,0 +1,30 @@
+A basic bot that can create/configure/destroy rooms and invite/kick users to rooms via an HTTP RESTful interface.
+
+All calls use http-auth configured in config.ini
+
+POST	/room/[room-name]
+	creates/joins a room
+
+DELETE	/room/[room-name]
+	destroys a room
+
+GET		/config/[room-name]
+	retrieves json config
+
+POST	/config/[room-name]
+	updates json config
+
+GET		/participant/[room-name]?jid=[jid]
+	invites a jid to room
+
+DELETE	/participant/[room]?nick=[nick]
+	kicks a nick from room
+
+Requirements
+-------------
+SleekXMPP 0.9+ (currently on github/master)
+
+Credits
+-------------
+Author: Nathan Fritz
+jid/email: fritzy@netflint.net
