@@ -3,7 +3,7 @@ A basic bot that can create/configure/destroy rooms and invite/kick users to roo
 All calls use http-auth configured in config.ini
 
 POST	/room/[room-name]
-	creates/joins a room
+	creates/joins a room w/ optional json config
 
 DELETE	/room/[room-name]
 	destroys a room

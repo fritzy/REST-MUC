@@ -362,6 +362,9 @@ class RoomHandler(RestHandler):
 	def do_POST(self, domain, controller, obj, args):
 		"Create room"
 		self.muc.joinMUC("%s@%s" % (obj, self.component), self.nick, wait=True)
+		form = self.muc.getRoomForm("%s@%s" % (obj, self.component))
+		form.setValues(args.get('__data__', {}))
+		self.muc.configureRoom("%s@%s" % (obj, self.component), form)
 		return json.dumps({'error': False}), 'text/json'
 	
 	
@@ -411,9 +414,6 @@ class ConfigHandler(RestHandler):
 	def do_POST(self, domain, controller, obj, args):
 		"Update room config"
 		form = self.muc.getRoomForm("%s@%s" % (obj, self.component))
-		print("*" * 80)
-		print(args.get('__data__'))
-		print("*" * 80)
 		form.setValues(args.get('__data__', {}))
 		self.muc.configureRoom("%s@%s" % (obj, self.component), form)
 		return json.dumps({'error': False}), 'text/json'
